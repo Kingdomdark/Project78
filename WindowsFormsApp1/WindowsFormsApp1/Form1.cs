@@ -49,8 +49,11 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 m = new Form2();
-            m.Show();
+
+            this.Hide();
+            var form2 = new Form2();
+            form2.Closed += (s, args) => this.Close();
+            form2.Show();
         }
     }
 }

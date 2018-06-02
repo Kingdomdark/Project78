@@ -44,5 +44,13 @@ namespace WindowsFormsApp1
             myProcess.Close();
             Console.WriteLine("Value received from script: " + myString);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var form1 = new Form1();
+            form1.Closed += (s, args) => this.Close();
+            form1.Show();
+        }
     }
 }
