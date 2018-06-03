@@ -36,6 +36,7 @@ namespace WindowsFormsApp1
             Process myProcess = new Process();
             myProcess.StartInfo = myProcessStartInfo;
             Console.WriteLine("Calling Python script");
+            Console.ReadLine();
 
             myProcess.Start();
 

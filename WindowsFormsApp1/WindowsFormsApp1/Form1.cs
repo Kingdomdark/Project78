@@ -35,6 +35,7 @@ namespace WindowsFormsApp1
             Process myProcess = new Process();
             myProcess.StartInfo = myProcessStartInfo;
             Console.WriteLine("Calling Python script");
+            Console.ReadLine();
 
             myProcess.Start();
 
@@ -54,6 +55,14 @@ namespace WindowsFormsApp1
             var form2 = new Form2();
             form2.Closed += (s, args) => this.Close();
             form2.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var form3 = new Form3();
+            form3.Closed += (s, args) => this.Close();
+            form3.Show();
         }
     }
 }
