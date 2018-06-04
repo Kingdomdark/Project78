@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data.Sql;
+using System.Data;
 
 namespace WindowsFormsApp1
 {
@@ -21,12 +24,16 @@ namespace WindowsFormsApp1
 
         static void Main()
         {
+
+             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var main = new Form1();
             main.FormClosed += new FormClosedEventHandler(FormClosed);
             main.Show();
             Application.Run();
+
+
         }
 
         static void FormClosed(object sender, FormClosedEventArgs e)

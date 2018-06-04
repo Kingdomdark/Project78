@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq.Expressions;
+using System.Data.SqlClient;
+using System.Data.Sql;
 
 namespace WindowsFormsApp1
 {
@@ -55,6 +58,16 @@ namespace WindowsFormsApp1
             var form1 = new Form1();
             form1.Closed += (s, args) => this.Close();
             form1.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //http://csharp.net-informations.com/data-providers/csharp-sql-server-connection.htm
+            //string connetionString = null;
+            //SqlConnection cnn;
+            //connetionString = "Data Source = DESKTOP - RU5OG2S; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;";
+            //cnn = new SqlConnection(connetionString);
+            //HELP ME ITS NOT WORKING! YAMERO!
         }
     }
 }
