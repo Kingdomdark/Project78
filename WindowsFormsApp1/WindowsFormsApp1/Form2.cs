@@ -62,27 +62,40 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            bool ret = false;
-            //http://csharp.net-informations.com/data-providers/csharp-sql-server-connection.htm
-            try
+
+            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-RU5OG2S;Initial Catalog=PGA_HRO;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
             {
-                string connetionString = null;
-                SqlConnection cnn;
-                connetionString = "Data Source = DESKTOP - RU5OG2S; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;";
-                cnn = new SqlConnection(connetionString);
-                cnn.Open();
-                if (cnn.State == ConnectionState.Open)
-                {
-                    ret = true;
-                }
+                con.Open();
+
+                //new SqlCommand("SELECT casId FROM dbo.tblCasus", con);
+            }
+
+
+
+
+
+
+            //bool ret = false;
+            ////http://csharp.net-informations.com/data-providers/csharp-sql-server-connection.htm
+            //try
+            //{
+            //    string connetionString = null;
+            //    SqlConnection cnn;
+            //    connetionString = "Data Source = DESKTOP - RU5OG2S; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;";
+            //    cnn = new SqlConnection(connetionString);
+            //    cnn.Open();
+            //    if (cnn.State == ConnectionState.Open)
+            //    {
+            //        ret = true;
+            //    }
 
              
-            }
+            //}
 
-            catch (SqlException)
-            {
-                ret = false;
-            }
+            //catch (SqlException)
+            //{
+            //    ret = false;
+            //}
             //using (SqlCommand cmd = new SqlCommand("SELECT select itvid,itvRegieParentId,itvTargetId,itvInterventieOptieId,itvProbleemId,probId,probLeefgebiedScoreId,probProbleemOptieId,lgscoreId,LgscoreRegieParentId,lgscoreLeefgebiedId,lgscoreScore,lgId" +
             //    "from dbo.tblInterventie inner join tblInterventieOptie on tblInterventie.itvInterventieOptieId = tblInterventieOptie.intoptId" +
             //    "inner join tblProbleem on tblInterventie.itvProbleemId = tblProbleem.probId " +
