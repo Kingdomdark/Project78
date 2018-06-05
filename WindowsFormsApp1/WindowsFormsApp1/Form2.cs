@@ -62,11 +62,34 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            bool ret = false;
             //http://csharp.net-informations.com/data-providers/csharp-sql-server-connection.htm
-            //string connetionString = null;
-            //SqlConnection cnn;
-            //connetionString = "Data Source = DESKTOP - RU5OG2S; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;";
-            //cnn = new SqlConnection(connetionString);
+            try
+            {
+                string connetionString = null;
+                SqlConnection cnn;
+                connetionString = "Data Source = DESKTOP - RU5OG2S; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;";
+                cnn = new SqlConnection(connetionString);
+                cnn.Open();
+                if (cnn.State == ConnectionState.Open)
+                {
+                    ret = true;
+                }
+
+             
+            }
+
+            catch (SqlException)
+            {
+                ret = false;
+            }
+            //using (SqlCommand cmd = new SqlCommand("SELECT select itvid,itvRegieParentId,itvTargetId,itvInterventieOptieId,itvProbleemId,probId,probLeefgebiedScoreId,probProbleemOptieId,lgscoreId,LgscoreRegieParentId,lgscoreLeefgebiedId,lgscoreScore,lgId" +
+            //    "from dbo.tblInterventie inner join tblInterventieOptie on tblInterventie.itvInterventieOptieId = tblInterventieOptie.intoptId" +
+            //    "inner join tblProbleem on tblInterventie.itvProbleemId = tblProbleem.probId " +
+            //    "inner join tblLeefgebiedScore on tblProbleem.probLeefgebiedScoreId = tblLeefgebiedScore.lgscoreId" +
+            //    "inner join tblLeefgebied on tblLeefgebiedScore.lgscoreLeefgebiedId = tblLeefgebied.lgId" +
+            //    "inner join tblprobleemoptie on tblProbleemOptie.proboptId = tblProbleem.probProbleemOptieId" +
+            //    "where itvProbleemId is not null"));
             //HELP ME ITS NOT WORKING! YAMERO!
         }
     }
