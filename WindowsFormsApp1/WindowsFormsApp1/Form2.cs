@@ -76,6 +76,7 @@ namespace WindowsFormsApp1
             //{
             string connetionString = null;
             SqlConnection cnn;
+            //Change Data Source and User ID to yours.
             connetionString = "Data Source = DESKTOP-RU5OG2S; Initial Catalog = PGA_HRO; Integrated Security = True; User ID = labin;";
             cnn = new SqlConnection(connetionString);
             try
