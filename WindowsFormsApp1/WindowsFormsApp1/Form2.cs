@@ -63,12 +63,6 @@ namespace WindowsFormsApp1
         private void button3_Click(object sender, EventArgs e)
         {
 
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-RU5OG2S;Initial Catalog=PGA_HRO;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
-            {
-                con.Open();
-
-                //new SqlCommand("SELECT casId FROM dbo.tblCasus", con);
-            }
 
             //bool ret = false;
             ////http://csharp.net-informations.com/data-providers/csharp-sql-server-connection.htm
