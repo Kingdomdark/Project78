@@ -70,26 +70,26 @@ namespace WindowsFormsApp1
                 //new SqlCommand("SELECT casId FROM dbo.tblCasus", con);
             }
 
-
-
-
-
-
             //bool ret = false;
             ////http://csharp.net-informations.com/data-providers/csharp-sql-server-connection.htm
             //try
             //{
-            //    string connetionString = null;
-            //    SqlConnection cnn;
-            //    connetionString = "Data Source = DESKTOP - RU5OG2S; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;";
-            //    cnn = new SqlConnection(connetionString);
-            //    cnn.Open();
-            //    if (cnn.State == ConnectionState.Open)
-            //    {
-            //        ret = true;
-            //    }
+            string connetionString = null;
+            SqlConnection cnn;
+            connetionString = "Data Source = DESKTOP-RU5OG2S; Initial Catalog = PGA_HRO; Integrated Security = True; User ID = labin;";
+            cnn = new SqlConnection(connetionString);
+            try
+            {
+                cnn.Open();
+                MessageBox.Show("Connection Open ! ");
+                cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can not open connection ! ");
+            }
 
-             
+
             //}
 
             //catch (SqlException)
