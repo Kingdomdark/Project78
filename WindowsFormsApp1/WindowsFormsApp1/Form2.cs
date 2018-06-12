@@ -107,38 +107,45 @@ namespace WindowsFormsApp1
             //Change Data Source and User ID to yours.
             connectionString = "Data Source = DESKTOP-RU5OG2S; Initial Catalog = PGA_HRO; Integrated Security = True; User ID = labin;";
             cnn = new SqlConnection(connectionString);
+            cnn.Open();
+            //IEnumerable<string>query = from itvid in
+
+
+
+
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                cnn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT select itvid,itvRegieParentId,itvTargetId,itvInterventieOptieId,itvProbleemId,probId,probLeefgebiedScoreId,probProbleemOptieId,lgscoreId,LgscoreRegieParentId,lgscoreLeefgebiedId,lgscoreScore,lgId" +
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(("select itvid,itvRegieParentId,itvTargetId,itvInterventieOptieId,itvProbleemId,probId,probLeefgebiedScoreId,probProbleemOptieId,lgscoreId,LgscoreRegieParentId,lgscoreLeefgebiedId,lgscoreScore,lgId" +
 "from dbo.tblInterventie inner join tblInterventieOptie on tblInterventie.itvInterventieOptieId = tblInterventieOptie.intoptId" +
 "inner join tblProbleem on tblInterventie.itvProbleemId = tblProbleem.probId " +
 "inner join tblLeefgebiedScore on tblProbleem.probLeefgebiedScoreId = tblLeefgebiedScore.lgscoreId" +
 "inner join tblLeefgebied on tblLeefgebiedScore.lgscoreLeefgebiedId = tblLeefgebied.lgId" +
 "inner join tblprobleemoptie on tblProbleemOptie.proboptId = tblProbleem.probProbleemOptieId" +
-"where itvProbleemId is not null");
+"where itvProbleemId is not null"), conn);
                 SqlDataReader reader = cmd.ExecuteReader();
-                //HELP ME ITS NOT WORKING! YAMERO!
+                //                //HELP ME ITS NOT WORKING! YAMERO!
 
 
-                try
-                {
-                    while (reader.Read())
-                    {
-                        Console.WriteLine(String.Format("{0}, {1}",
-                            reader[0], reader[1]));
-                    }
-                    MessageBox.Show("But does it works :thinking:");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("bich this is libary");
-                }
+                //                try
+                //                {
+                //                    while (reader.Read())
+                //                    {
+                //                        Console.WriteLine(String.Format("{0}, {1}",
+                //                            reader[0], reader[1]));
+                //                    }
+                //                    MessageBox.Show("But does it works :thinking:");
+                //                }
+                //                catch (Exception ex)
+                //                {
+                //                    MessageBox.Show("bich this is libary");
+                //                }
 
-                finally
-                {
-                    reader.Close();
-                }
+                //                finally
+                //                {
+                //                    reader.Close();
+                //                }
             }
         }
     }
