@@ -63,41 +63,160 @@ namespace WindowsFormsApp1
         private void button3_Click(object sender, EventArgs e)
         {
 
+            //using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-RU5OG2S;Initial Catalog=PGA_HRO;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            //{
+            //    con.Open();
+
+            //    //new SqlCommand("SELECT casId FROM dbo.tblCasus", con);
+            //}
 
             //bool ret = false;
             ////http://csharp.net-informations.com/data-providers/csharp-sql-server-connection.htm
-            //try
-            //{
             string connetionString = null;
             SqlConnection cnn;
+            //Change Data Source and User ID to yours.
             connetionString = "Data Source = DESKTOP-RU5OG2S; Initial Catalog = PGA_HRO; Integrated Security = True; User ID = labin;";
             cnn = new SqlConnection(connetionString);
             try
             {
                 cnn.Open();
-                MessageBox.Show("Connection Open ! ");
+                MessageBox.Show("Connection Open! ");
                 cnn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not open connection ! ");
+                MessageBox.Show("Can not open connection! ");
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string connectionString = null;
+            SqlConnection cnn;
+            //Change Data Source and User ID to yours.
+            connectionString = "Data Source = DESKTOP-RU5OG2S; Initial Catalog = PGA_HRO; Integrated Security = True; User ID = labin;";
+            cnn = new SqlConnection(connectionString);
+            cnn.Open();
+            //IEnumerable<string>query = from itvid in
+            string sqlstring = "select [itvid]," +
+                "[itvRegieParentId]," +
+                "[itvTargetId]," +
+                "[itvInterventieOptieId]," +
+                "[probId]," +
+                "[lgscoreId]," +
+                "[LgscoreRegieParentId]," +
+                "[casId]," +
+                "[casTargetId]," +
+                "[ptid]," +
+                "[sclSubjectId]," +
+                "[sclId]," +
+                "[sclCollectionId]" +
+                "from[PGA_HRO].[dbo].[tblInterventie]" +
+                "inner join[tblInterventieOptie] on[tblInterventie].[itvInterventieOptieId] = [tblInterventieOptie].[intoptId]" +
+                "inner join[tblProbleem] on[tblInterventie].[itvProbleemId] = [tblProbleem].[probId]" +
+                "inner join[tblLeefgebiedScore] on[tblProbleem].[probLeefgebiedScoreId] = [tblLeefgebiedScore].[lgscoreId]" +
+                "inner join[tblLeefgebied] on[tblLeefgebiedScore].[lgscoreLeefgebiedId] = [tblLeefgebied].[lgId]" +
+                "inner join[tblprobleemoptie] on[tblProbleemOptie].[proboptId] = [tblProbleem].[probProbleemOptieId]" +
+                "inner join[tblCasus] on[tblInterventie].[itvRegieParentId] = [tblCasus].[casId] and[tblInterventie].[itvRegieParentType] = 'casus'" +
+                "inner join[tblPGAThemaGebied] on[tblPGAThemaGebied].[tgId] = [tblCasus].[casThemaGebiedId]" +
+                "inner join[tblPGAThema] on[tblPGAThema].[ptId] = [tblPGAThemaGebied].[tgThemaId]" +
+                "inner join[tblSubjectCollection] on[tblInterventie].[itvRegieParentId] = [tblSubjectCollection].[scTopicId]" +
+                "inner join[tblSubjectCollectionLid] on[tblSubjectCollection].[scId] = [tblSubjectCollectionLid].[sclCollectionId]" +
+                "inner join[tblSubject] on[tblSubject].[sjId] = [tblSubjectCollectionLid].[sclSubjectId]" +
+                "where[itvProbleemId] is not null and[itvGoalReached] = 1 and[sclFunctie] = 'primairsubject'";
+
+            SqlCommand cmd = new SqlCommand(sqlstring, cnn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) {
+
+                DataTable Table = new DataTable("TestTable");
+                Console.WriteLine("\t{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}", 
+                    reader["itvid"], reader["itvRegieParentId"], reader["itvTargetId"], reader["itvInterventieOptieId"], reader["probId"],
+                     reader["lgscoreId"], reader["LgscoreRegieParentId"], reader["casId"], reader["casTargetId"], reader["ptid"],
+                     reader["sclSubjectId"], reader["sclId"], reader["sclCollectionId"]);
+                //foreach (DataRow dataRow in Table.Rows)
+                //{
+                //    foreach (var item in dataRow.ItemArray)
+                //    {
+                //        Console.WriteLine(item);
+                //    }
+                //}
+
             }
 
 
-            //}
 
-            //catch (SqlException)
-            //{
-            //    ret = false;
-            //}
-            //using (SqlCommand cmd = new SqlCommand("SELECT select itvid,itvRegieParentId,itvTargetId,itvInterventieOptieId,itvProbleemId,probId,probLeefgebiedScoreId,probProbleemOptieId,lgscoreId,LgscoreRegieParentId,lgscoreLeefgebiedId,lgscoreScore,lgId" +
-            //    "from dbo.tblInterventie inner join tblInterventieOptie on tblInterventie.itvInterventieOptieId = tblInterventieOptie.intoptId" +
-            //    "inner join tblProbleem on tblInterventie.itvProbleemId = tblProbleem.probId " +
-            //    "inner join tblLeefgebiedScore on tblProbleem.probLeefgebiedScoreId = tblLeefgebiedScore.lgscoreId" +
-            //    "inner join tblLeefgebied on tblLeefgebiedScore.lgscoreLeefgebiedId = tblLeefgebied.lgId" +
-            //    "inner join tblprobleemoptie on tblProbleemOptie.proboptId = tblProbleem.probProbleemOptieId" +
-            //    "where itvProbleemId is not null"));
-            //HELP ME ITS NOT WORKING! YAMERO!
+
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                //try
+                //{
+                    //                conn.Open();
+                    //                SqlCommand cmd = new SqlCommand(("select itvid,itvRegieParentId,itvTargetId,itvInterventieOptieId,itvProbleemId,probId,probLeefgebiedScoreId,probProbleemOptieId,lgscoreId,LgscoreRegieParentId,lgscoreLeefgebiedId,lgscoreScore,lgId" +
+                    //"from dbo.tblInterventie inner join tblInterventieOptie on tblInterventie.itvInterventieOptieId = tblInterventieOptie.intoptId" +
+                    //"inner join tblProbleem on tblInterventie.itvProbleemId = tblProbleem.probId " +
+                    //"inner join tblLeefgebiedScore on tblProbleem.probLeefgebiedScoreId = tblLeefgebiedScore.lgscoreId" +
+                    //"inner join tblLeefgebied on tblLeefgebiedScore.lgscoreLeefgebiedId = tblLeefgebied.lgId" +
+                    //"inner join tblprobleemoptie on tblProbleemOptie.proboptId = tblProbleem.probProbleemOptieId" +
+                    //"where itvProbleemId is not null"), conn);
+                    //                SqlDataReader reader = cmd.ExecuteReader();
+                    //conn.Open();
+                    //string sqlstring = "select [itvid]," +
+                    //    "[itvRegieParentId]," +
+                    //    "[itvTargetId]," +
+                    //    "[itvInterventieOptieId]," +
+                    //    "[probId]," +
+                    //    "[probLeefgebiedScoreId]," +
+                    //    "[probProbleemOptieId]," +
+                    //    "[lgscoreId]," +
+                    //    "[LgscoreRegieParentId]," +
+                    //    "[lgscoreLeefgebiedId]," +
+                    //    "[lgscoreScore]," +
+                    //    "[lgId]" +
+                    //    "from[PGA_HRO].[dbo].[tblInterventie]" +
+                    //    "inner join[tblInterventieOptie] on[tblInterventie].[itvInterventieOptieId] = [tblInterventieOptie].[intoptId]" +
+                    //    "inner join[tblProbleem] on[tblInterventie].[itvProbleemId] = [tblProbleem].[probId]" +
+                    //    "inner join[tblLeefgebiedScore] on[tblProbleem].[probLeefgebiedScoreId] = [tblLeefgebiedScore].[lgscoreId]" +
+                    //    "inner join[tblLeefgebied] on[tblLeefgebiedScore].[lgscoreLeefgebiedId] = [tblLeefgebied].[lgId]" +
+                    //    "inner join[tblprobleemoptie] on[tblProbleemOptie].[proboptId] = [tblProbleem].[probProbleemOptieId]" +
+                    //    "where[itvProbleemId] is not null and[itvGoalReached] = 1";
+
+                    //    SqlCommand cmd = new SqlCommand(sqlstring, conn);
+                    //    SqlDataReader reader = cmd.ExecuteReader();
+                    //    while (reader.HasRows)
+                    //    {
+                    //        Console.WriteLine("\t{0}\t{1}", reader.GetInt64(0), reader.GetInt64(1));
+                    //    }
+                //}
+
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Nigga doesnt work");
+                //}
+                //                //HELP ME ITS NOT WORKING! YAMERO!
+
+
+                //                try
+                //                {
+                //                    while (reader.Read())
+                //                    {
+                //                        Console.WriteLine(String.Format("{0}, {1}",
+                //                            reader[0], reader[1]));
+                //                    }
+                //                    MessageBox.Show("But does it works :thinking:");
+                //                }
+                //                catch (Exception ex)
+                //                {
+                //                    MessageBox.Show("bich this is libary");
+                //                }
+
+                //                finally
+                //                {
+                //                    reader.Close();
+                //                }
+            }
         }
     }
 }
