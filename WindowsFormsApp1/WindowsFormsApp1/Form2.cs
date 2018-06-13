@@ -80,12 +80,12 @@ namespace WindowsFormsApp1
             try
             {
                 cnn.Open();
-                MessageBox.Show("Connection Open ! ");
+                MessageBox.Show("Connection Open! ");
                 cnn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not open connection ! ");
+                MessageBox.Show("Can not open connection! ");
             }
 
         }
@@ -121,10 +121,12 @@ namespace WindowsFormsApp1
 
             SqlCommand cmd = new SqlCommand(sqlstring, cnn);
             SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.HasRows)
-            {
-                Console.WriteLine("\t{0}\t{1}", reader.GetInt64(0), reader.GetInt64(1));
+            while (reader.Read()) {
+
+                    Console.WriteLine("\t{0}\t{1}\t{2}\t{3}\t{4}", reader.GetName(0), reader.GetName(1),reader.GetName(2),reader.GetName(3),reader.GetName(4));
+
             }
+
 
 
 
