@@ -116,15 +116,50 @@ namespace WindowsFormsApp1
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(("select itvid,itvRegieParentId,itvTargetId,itvInterventieOptieId,itvProbleemId,probId,probLeefgebiedScoreId,probProbleemOptieId,lgscoreId,LgscoreRegieParentId,lgscoreLeefgebiedId,lgscoreScore,lgId" +
-"from dbo.tblInterventie inner join tblInterventieOptie on tblInterventie.itvInterventieOptieId = tblInterventieOptie.intoptId" +
-"inner join tblProbleem on tblInterventie.itvProbleemId = tblProbleem.probId " +
-"inner join tblLeefgebiedScore on tblProbleem.probLeefgebiedScoreId = tblLeefgebiedScore.lgscoreId" +
-"inner join tblLeefgebied on tblLeefgebiedScore.lgscoreLeefgebiedId = tblLeefgebied.lgId" +
-"inner join tblprobleemoptie on tblProbleemOptie.proboptId = tblProbleem.probProbleemOptieId" +
-"where itvProbleemId is not null"), conn);
-                SqlDataReader reader = cmd.ExecuteReader();
+                //try
+                //{
+                    //                conn.Open();
+                    //                SqlCommand cmd = new SqlCommand(("select itvid,itvRegieParentId,itvTargetId,itvInterventieOptieId,itvProbleemId,probId,probLeefgebiedScoreId,probProbleemOptieId,lgscoreId,LgscoreRegieParentId,lgscoreLeefgebiedId,lgscoreScore,lgId" +
+                    //"from dbo.tblInterventie inner join tblInterventieOptie on tblInterventie.itvInterventieOptieId = tblInterventieOptie.intoptId" +
+                    //"inner join tblProbleem on tblInterventie.itvProbleemId = tblProbleem.probId " +
+                    //"inner join tblLeefgebiedScore on tblProbleem.probLeefgebiedScoreId = tblLeefgebiedScore.lgscoreId" +
+                    //"inner join tblLeefgebied on tblLeefgebiedScore.lgscoreLeefgebiedId = tblLeefgebied.lgId" +
+                    //"inner join tblprobleemoptie on tblProbleemOptie.proboptId = tblProbleem.probProbleemOptieId" +
+                    //"where itvProbleemId is not null"), conn);
+                    //                SqlDataReader reader = cmd.ExecuteReader();
+                    conn.Open();
+                    string sqlstring = "select [itvid]," +
+                        "[itvRegieParentId]," +
+                        "[itvTargetId]," +
+                        "[itvInterventieOptieId]," +
+                        "[probId]," +
+                        "[probLeefgebiedScoreId]," +
+                        "[probProbleemOptieId]," +
+                        "[lgscoreId]," +
+                        "[LgscoreRegieParentId]," +
+                        "[lgscoreLeefgebiedId]," +
+                        "[lgscoreScore]," +
+                        "[lgId]" +
+                        "from[PGA_HRO].[dbo].[tblInterventie]" +
+                        "inner join[tblInterventieOptie] on[tblInterventie].[itvInterventieOptieId] = [tblInterventieOptie].[intoptId]" +
+                        "inner join[tblProbleem] on[tblInterventie].[itvProbleemId] = [tblProbleem].[probId]" +
+                        "inner join[tblLeefgebiedScore] on[tblProbleem].[probLeefgebiedScoreId] = [tblLeefgebiedScore].[lgscoreId]" +
+                        "inner join[tblLeefgebied] on[tblLeefgebiedScore].[lgscoreLeefgebiedId] = [tblLeefgebied].[lgId]" +
+                        "inner join[tblprobleemoptie] on[tblProbleemOptie].[proboptId] = [tblProbleem].[probProbleemOptieId]" +
+                        "where[itvProbleemId] is not null and[itvGoalReached] = 1";
+
+                        SqlCommand cmd = new SqlCommand(sqlstring, conn);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.HasRows)
+                        {
+                            Console.WriteLine("\t{0}\t{1}", reader.GetString(0));
+                        }
+                //}
+
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Nigga doesnt work");
+                //}
                 //                //HELP ME ITS NOT WORKING! YAMERO!
 
 
