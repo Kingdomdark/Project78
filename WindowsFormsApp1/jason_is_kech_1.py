@@ -6,8 +6,8 @@
 
 
 
-#import pandas as pd #Dataframe, Series
-#import numpy as np #Scientific Computing
+import pandas as pd #Dataframe, Series
+import numpy as np #Scientific Computing
 
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier,export_graphviz
@@ -21,25 +21,13 @@ import graphviz
 import pydotplus
 from scipy import misc
 import PIL
-get_ipython().run_line_magic('matplotlib', 'inline')
+
 
 
 # In[2]:
 
 
-data = pd.read_csv('C:/Users/ricky/OneDrive/Documents/anahmemey/new.csv')
-
-
-# In[3]:
-
-
-data.describe()
-
-
-# In[4]:
-
-
-data.head()
+data = pd.read_csv('C:/Users/labin/Documents/GitHub/Project78/WindowsFormsApp1/new.csv')
 
 
 # In[5]:
@@ -53,32 +41,6 @@ train, test = train_test_split(data, test_size = 0.15)
 
 print("Training size{}: Test size: {}".format(len(train), len(test)))
 
-
-# In[7]:
-
-
-train.shape
-
-
-# In[8]:
-
-
-neg_test = data[data['lgscoreScore'] == 0]['lgscoreScore']
-neutral_test = data[data['lgscoreScore'] == 5]['lgscoreScore']
-pos_test = data[data['lgscoreScore'] == 10]['lgscoreScore']
-
-fig = plt.figure(figsize =(12, 8))
-plt.title("lgscoreScore")
-pos_test.hist(alpha = 1, bins = 1, label = "positive")
-neg_test.hist(alpha = 1, bins = 1, label = "negative")
-neutral_test.hist(alpha = 1, bins = 1, label = "neutral")
-plt.legend(loc= "upper right")
-
-
-# In[9]:
-
-
-neutral_test
 
 
 # In[10]:
@@ -135,23 +97,3 @@ y_pred = c.predict(X_test)
 
 
 y_pred
-
-
-# In[17]:
-
-
-from sklearn.metrics import accuracy_score
-score = accuracy_score(y_test, y_pred) * 100
-
-
-# In[18]:
-
-
-print("Accuracy using Decision Tree: ", round(score, 1), "%")
-
-
-# In[19]:
-
-
-X_test
-
