@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
             //Change python string path to the one you have
             string python = @"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\python.exe";
             //Change testerino string path to the path you saved the testerino script
-            string testerino = @"C:\Users\labin\Documents\GitHub\Project78\WindowsFormsApp1\testerino.py";
+            string testerino = @"C:\Users\labin\Documents\GitHub\Project78\WindowsFormsApp1\jason_is_kech_1.py";
 
             //Dont touch the rest trash
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
