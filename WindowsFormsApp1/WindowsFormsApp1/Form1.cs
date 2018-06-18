@@ -24,9 +24,9 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             //Change python string path to the one you have
-            string python = @"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\python.exe";
+            string python = @"C:\Users\labin\Anaconda3\envs\test\python.exe";
             //Change testerino string path to the path you saved the testerino script
-            string testerino = @"C:\Users\labin\Documents\GitHub\Project78\WindowsFormsApp1\testerino.py";
+            string testerino = @"C:\Users\labin\Documents\GitHub\Project78\WindowsFormsApp1\jason_is_kech_1.py";
 
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
 
