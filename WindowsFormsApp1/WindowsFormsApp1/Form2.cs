@@ -105,13 +105,16 @@ namespace WindowsFormsApp1
                 "[itvInterventieOptieId]," +
                 "[probId]," +
                 "[lgscoreId]," +
-                "[LgscoreRegieParentId]," +
+                "[lgId]," +
                 "[casId]," +
+                "[tgId]," +
                 "[casTargetId]," +
                 "[ptid]," +
                 "[sclSubjectId]," +
                 "[sclId]," +
-                "[sclCollectionId]" +
+                "[sclCollectionId]," +
+                "[probprobleemoptieId]" +
+                "" +
                 "from[PGA_HRO].[dbo].[tblInterventie]" +
                 "inner join[tblInterventieOptie] on[tblInterventie].[itvInterventieOptieId] = [tblInterventieOptie].[intoptId]" +
                 "inner join[tblProbleem] on[tblInterventie].[itvProbleemId] = [tblProbleem].[probId]" +
