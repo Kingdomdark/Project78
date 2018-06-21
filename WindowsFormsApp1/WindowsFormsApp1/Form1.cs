@@ -24,9 +24,9 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             //Change python string path to the one you have
-            string python = @"C:\Users\labin\Anaconda3\envs\test\python.exe";
+            string python = @"C:\Users\JasonTjauw\Anaconda3\envs\test\python.exe";
             //Change testerino string path to the path you saved the testerino script
-            string testerino = @"C:\Users\labin\Documents\GitHub\Project78\WindowsFormsApp1\jason_is_kech_1.py";
+            string testerino = @"C:\Users\JasonTjauw\Desktop\Project78\WindowsFormsApp1\test\Untitled.py";
 
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
 
@@ -43,11 +43,13 @@ namespace WindowsFormsApp1
 
 
             StreamReader myStreamReader = myProcess.StandardOutput;
-            string myString = myStreamReader.ReadLine();
+            string myString = myStreamReader.ReadToEnd();
 
             myProcess.WaitForExit();
-            myProcess.Close();
+            
+
             Console.WriteLine("Value received from script: " + myString);
+            myProcess.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
